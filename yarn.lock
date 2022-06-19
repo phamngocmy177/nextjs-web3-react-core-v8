@@ -593,7 +593,7 @@
     bech32 "1.1.4"
     ws "7.4.6"
 
-"@ethersproject/providers@5.6.8", "@ethersproject/providers@^5", "@ethersproject/providers@^5.5.1":
+"@ethersproject/providers@5.6.8", "@ethersproject/providers@^5.5.1":
   version "5.6.8"
   resolved "https://registry.yarnpkg.com/@ethersproject/providers/-/providers-5.6.8.tgz#22e6c57be215ba5545d3a46cf759d265bb4e879d"
   integrity sha512-Wf+CseT/iOJjrGtAOf3ck9zS7AgPmr2fZ3N97r4+YXN3mBePTG2/bJ8DApl9mVwYL+RpYbNxMEkEp4mPGdwG/w==
@@ -1242,12 +1242,12 @@
   dependencies:
     "@walletconnect/window-getters" "^1.0.0"
 
-"@web3-react/coinbase-wallet@8.0.26-beta.0":
-  version "8.0.26-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/coinbase-wallet/-/coinbase-wallet-8.0.26-beta.0.tgz#4c5c737b6856c459bc9f36d18250a1582e5b15fd"
-  integrity sha512-/t0G66/Cw/r/+8v/mXtKowY7vAxgmmuPw6I4Ee5++zq3kA/2aOtODn9SlRGXvlgKo7Tjvcj2m9y4i3VP/UdFGw==
+"@web3-react/coinbase-wallet@8.0.17-beta.0":
+  version "8.0.22-beta.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/coinbase-wallet/-/coinbase-wallet-8.0.22-beta.0.tgz#71feb8b3f91077a7141a2c770a9c0f9ffb8bd306"
+  integrity sha512-dabgu/5t/7rugp43cdKe6HCD3ZR1BmkJkIyZeXNXp7e+I4iQH5GXuGLXJS6VO7S0vYN8NhQdjjLQ+kTfUV+CrA==
   dependencies:
-    "@web3-react/types" "^8.0.12-beta.0"
+    "@web3-react/types" "^8.0.10-beta.0"
 
 "@web3-react/core@8.0.17-beta.0":
   version "8.0.17-beta.0"
@@ -1282,13 +1282,14 @@
     "@metamask/detect-provider" "^1.2.0"
     "@web3-react/types" "^8.0.10-beta.0"
 
-"@web3-react/network@8.0.18-beta.0":
-  version "8.0.18-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/network/-/network-8.0.18-beta.0.tgz#5f078ba785f92084b56018c30b4cbf520ab96365"
-  integrity sha512-H8+kv+cLr6V6ovSxIlZsVcobrqbO9KRokbwVvD8hZ9sqBjP2zeqmwT0OkA77KAvSGW8XkWyPHimaUiSq9EVZ2w==
+"@web3-react/network@8.0.13-beta.0":
+  version "8.0.13-beta.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/network/-/network-8.0.13-beta.0.tgz#5c8016e76e5f90071ecf9d36300e111c5dce731d"
+  integrity sha512-0pLOIAG9x6kmhM7JcWEydKpxoH8sQ4qa3K18GmWDrXw/pHKlGBA7chaI47CLuNMG+YjSnSYYg3PAA5yIjqXLJQ==
   dependencies:
-    "@ethersproject/providers" "^5"
-    "@web3-react/types" "^8.0.12-beta.0"
+    "@ethersproject/experimental" "^5.5.0"
+    "@ethersproject/providers" "^5.5.1"
+    "@web3-react/types" "^8.0.10-beta.0"
 
 "@web3-react/store@^8.0.12-beta.0":
   version "8.0.12-beta.0"
@@ -1305,13 +1306,6 @@
   integrity sha512-HitBmoKHyLDeRrJgtkImPddb8nzsb/FroAdiaYA15gAwAE3Y/p7Nd/TN8IANlgKcMkuyGyUjPD27fE7Mvw9rEA==
   dependencies:
     zustand "^4.0.0-beta.2"
-
-"@web3-react/types@^8.0.12-beta.0":
-  version "8.0.12-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/types/-/types-8.0.12-beta.0.tgz#787c7ca8b4dfd66bed0e4801fef7039ba42db59e"
-  integrity sha512-BWz8RnpO0gdySjL62iURcn41ZDGxq4kokV2qbgqgASHwst5/uZ7RI2MJHTzn8vH0AUrCsg/y6E8oeTNsCAQvfg==
-  dependencies:
-    zustand "^4.0.0-beta.3"
 
 "@web3-react/url@8.0.12-beta.0":
   version "8.0.12-beta.0"
@@ -2675,7 +2669,7 @@ yargs@^13.2.4:
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
 
-zustand@^4.0.0-beta.2, zustand@^4.0.0-beta.3:
+zustand@^4.0.0-beta.2:
   version "4.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.0.0-rc.1.tgz#ec30a3afc03728adec7e1bd7bcc3592176372201"
   integrity sha512-qgcs7zLqBdHu0PuT3GW4WCIY5SgXdsv30GQMu9Qpp1BA2aS+sNS8l4x0hWuyEhjXkN+701aGWawhKDv6oWJAcw==

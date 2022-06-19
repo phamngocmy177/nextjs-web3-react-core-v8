@@ -5,8 +5,9 @@ import { Card } from '../Card'
 import { Chain } from '../Chain'
 import { ConnectWithSelect } from '../ConnectWithSelect'
 import { Status } from '../Status'
+import useActiveWeb3React from 'hooks/useActiveWeb3React';
 
-const { useChainId, useAccounts, useError, useIsActivating, useIsActive, useProvider, useENSNames } = hooks
+const { useChainId, useAccounts, useError, useIsActivating, useIsActive, useProvider, useENSNames, useWeb3React } = hooks
 
 export default function MetaMaskCard() {
   const chainId = useChainId()
@@ -15,10 +16,15 @@ export default function MetaMaskCard() {
   const isActivating = useIsActivating()
 
   const isActive = useIsActive()
-
+  useActiveWeb3React()
   const provider = useProvider(chainId)
   const ENSNames = useENSNames(provider)
-    console.log('hooks', hooks)
+  const web3Provider = useWeb3React(provider);
+    console.log('hooks', web3Provider)
+    // web3Provider.library.getSigner().sendTransaction({
+    //     from: accounts[0],
+    //     to:
+    // })
     // provider.send()
   // attempt to connect eagerly on mount
   useEffect(() => {
