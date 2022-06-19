@@ -53,7 +53,7 @@ export default function MetaMaskCard() {
   return (
     <Card>
       <div>
-        <b>MetaMask</b>
+        <span className='font-bold'>MetaMask</span>
         <Status
           isActivating={isActivating}
           error={error}

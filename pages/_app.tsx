@@ -3,15 +3,17 @@ import MetaMaskCard from '../components/connectors/MetaMaskCard'
 import NetworkCard from '../components/connectors/NetworkCard'
 import WalletConnectCard from '../components/connectors/WalletConnectCard'
 
-export default function Home() {
+import 'styles/globals.css';
+
+const MyApp = () => {
   return (
     <>
-      <div style={{ display: 'flex', flexFlow: 'wrap', fontFamily: 'sans-serif' }}>
-        <MetaMaskCard />
-        <WalletConnectCard />
-        <CoinbaseWalletCard />
-        <NetworkCard />
-      </div>
+      <MetaMaskCard />
+      <WalletConnectCard />
+      <CoinbaseWalletCard />
+      <NetworkCard />
     </>
   )
 }
+
+export default MyApp;
