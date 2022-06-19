@@ -4,7 +4,6 @@ import {
   Contract,
   ContractInterface
 } from '@ethersproject/contracts';
-import { Web3Provider } from '@ethersproject/providers';
 import useActiveWeb3React from 'hooks/useActiveWeb3React';
 
 import ERC20_ABI from 'abis/erc20.json';
