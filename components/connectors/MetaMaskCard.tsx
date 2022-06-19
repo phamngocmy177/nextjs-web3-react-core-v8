@@ -5,9 +5,10 @@ import { Card } from "../Card";
 import { Chain } from "../Chain";
 import { ConnectWithSelect } from "../ConnectWithSelect";
 import { Status } from "../Status";
-import useActiveWeb3React from "hooks/useActiveWeb3React";
 import { useERC20Contract } from "hooks/useContract";
 import { MaxUint256 } from "@ethersproject/constants";
+import { UNISWAP_ROUTER3_V2 } from "constants/contracts";
+import { USDC } from "constants/tokens";
 
 const {
 	useChainId,
@@ -20,9 +21,6 @@ const {
 	useWeb3React,
 } = hooks;
 
-const USDC = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
-const UNISWAP_ROUTER3_V2 = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
-
 export default function MetaMaskCard() {
 	const chainId = useChainId();
 	const accounts = useAccounts();
@@ -30,12 +28,11 @@ export default function MetaMaskCard() {
 	const isActivating = useIsActivating();
 
 	const isActive = useIsActive();
-	useActiveWeb3React();
 	const provider = useProvider(chainId);
 	const ENSNames = useENSNames(provider);
 	const web3Provider = useWeb3React(provider);
 
-	const USDCContract = useERC20Contract(USDC);
+	const USDCContract = useERC20Contract(USDC[chainId]);
 
 	const handleSendTransaction = () => {
 		const approveData = USDCContract.interface.encodeFunctionData(
@@ -44,7 +41,7 @@ export default function MetaMaskCard() {
 		);
 		web3Provider.library.getSigner().sendTransaction({
 			from: accounts[0],
-			to: USDC,
+			to: USDC[chainId],
 			data: approveData,
 		});
 	};

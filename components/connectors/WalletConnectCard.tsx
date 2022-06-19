@@ -8,9 +8,8 @@ import { Status } from "../Status";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
 import { useERC20Contract } from "hooks/useContract";
 import { MaxUint256 } from "@ethersproject/constants";
-
-const USDC = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
-const UNISWAP_ROUTER3_V2 = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
+import { UNISWAP_ROUTER3_V2 } from "constants/contracts";
+import { USDC } from "constants/tokens";
 
 const {
 	useChainId,
@@ -33,7 +32,7 @@ export default function WalletConnectCard() {
 
 	const provider = useProvider();
 	const ENSNames = useENSNames(provider);
-	const USDCContract = useERC20Contract(USDC);
+	const USDCContract = useERC20Contract(USDC[chainId]);
 	const web3Provider = useWeb3React(provider);
 	const { library, account } = useActiveWeb3React();
 	const handleSendTransactionWithActiveConnector = () => {
@@ -43,7 +42,7 @@ export default function WalletConnectCard() {
 		);
 		library.getSigner().sendTransaction({
 			from: account,
-			to: USDC,
+			to: USDC[chainId],
 			data: approveData,
 		});
 	};
@@ -54,7 +53,7 @@ export default function WalletConnectCard() {
 		);
 		web3Provider.library.getSigner().sendTransaction({
 			from: accounts[0],
-			to: USDC,
+			to: USDC[chainId],
 			data: approveData,
 		});
 	};
