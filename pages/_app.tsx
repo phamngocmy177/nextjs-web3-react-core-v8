@@ -1,17 +1,23 @@
-import CoinbaseWalletCard from '../components/connectors/CoinbaseWalletCard'
-import MetaMaskCard from '../components/connectors/MetaMaskCard'
-import NetworkCard from '../components/connectors/NetworkCard'
-import WalletConnectCard from '../components/connectors/WalletConnectCard'
 
+import Layout from 'parts/layout';
+import type { AppPropsWithLayout } from 'types/general.d';
+import Head from 'next/head';
 import 'styles/globals.css';
 
-const MyApp = () => {
+const MyApp = ({
+  Component,
+  pageProps
+}: AppPropsWithLayout): JSX.Element => {
+  const getLayout = Component.getLayout ?? (page => page);
+    
   return (
     <>
-      <MetaMaskCard />
-      <WalletConnectCard />
-      <CoinbaseWalletCard />
-      <NetworkCard />
+      <Head>
+        <title>Wallet v8</title>
+      </Head>
+      <Layout>
+        {getLayout(<Component {...pageProps} />)}
+      </Layout>      
     </>
   )
 }

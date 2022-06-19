@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "ARBITRUM",
+        "clsx",
         "ethersproject"
     ],
     "[typescript]": {
