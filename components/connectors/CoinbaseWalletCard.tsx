@@ -28,10 +28,16 @@ export default function CoinbaseWalletCard() {
     <Card>
       <div>
         <b>Coinbase Wallet</b>
-        <Status isActivating={isActivating} error={error} isActive={isActive} />
+        <Status
+          isActivating={isActivating}
+          error={error}
+          isActive={isActive} />
         <div style={{ marginBottom: '1rem' }} />
         <Chain chainId={chainId} />
-        <Accounts accounts={accounts} provider={provider} ENSNames={ENSNames} />
+        <Accounts
+          accounts={accounts}
+          provider={provider}
+          ENSNames={ENSNames} />
       </div>
       <div style={{ marginBottom: '1rem' }} />
       <ConnectWithSelect
@@ -39,8 +45,7 @@ export default function CoinbaseWalletCard() {
         chainId={chainId}
         isActivating={isActivating}
         error={error}
-        isActive={isActive}
-      />
+        isActive={isActive} />
     </Card>
   )
 }

@@ -1,4 +1,4 @@
-export function Card({ children }: { children: JSX.Element | JSX.Element[] }) {
+export function Card({ children }: { children: JSX.Element | JSX.Element[]; }) {
   return (
     <div
       style={{
@@ -10,9 +10,8 @@ export function Card({ children }: { children: JSX.Element | JSX.Element[] }) {
         margin: '1rem',
         overflow: 'auto',
         border: '1px solid',
-        borderRadius: '1rem',
-      }}
-    >
+        borderRadius: '1rem'
+      }}>
       {children}
     </div>
   )

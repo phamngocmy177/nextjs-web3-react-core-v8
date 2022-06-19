@@ -13,7 +13,7 @@ function useBalances(
     if (provider && accounts?.length) {
       let stale = false
 
-      void Promise.all(accounts.map((account) => provider.getBalance(account))).then((balances) => {
+      void Promise.all(accounts.map(account => provider.getBalance(account))).then(balances => {
         if (!stale) {
           setBalances(balances)
         }
@@ -32,11 +32,11 @@ function useBalances(
 export function Accounts({
   accounts,
   provider,
-  ENSNames,
+  ENSNames
 }: {
-  accounts: ReturnType<Web3ReactHooks['useAccounts']>
-  provider: ReturnType<Web3ReactHooks['useProvider']>
-  ENSNames: ReturnType<Web3ReactHooks['useENSNames']>
+  accounts: ReturnType<Web3ReactHooks['useAccounts']>;
+  provider: ReturnType<Web3ReactHooks['useProvider']>;
+  ENSNames: ReturnType<Web3ReactHooks['useENSNames']>;
 }) {
   const balances = useBalances(provider, accounts)
 
@@ -49,11 +49,13 @@ export function Accounts({
         {accounts.length === 0
           ? 'None'
           : accounts?.map((account, i) => (
-              <ul key={account} style={{ margin: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {ENSNames?.[i] ?? account}
-                {balances?.[i] ? ` (Ξ${formatEther(balances[i])})` : null}
-              </ul>
-            ))}
+            <ul
+              key={account}
+              style={{ margin: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {ENSNames?.[i] ?? account}
+              {balances?.[i] ? ` (Ξ${formatEther(balances[i])})` : null}
+            </ul>
+          ))}
       </b>
     </div>
   )
