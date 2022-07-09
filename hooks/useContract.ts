@@ -33,5 +33,5 @@ function useERC20Contract(tokenAddress?: string): Contract | null {
 export default useContract;
 
 export {
-  useERC20Contract,
+  useERC20Contract
 };

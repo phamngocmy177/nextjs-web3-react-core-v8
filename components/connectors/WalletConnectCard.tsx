@@ -10,6 +10,7 @@ import { useERC20Contract } from "hooks/useContract";
 import { MaxUint256 } from "@ethersproject/constants";
 import { UNISWAP_ROUTER3_V2 } from "constants/contracts";
 import { USDC } from "constants/tokens";
+import { SupportedChainId } from "constants/chains";
 
 const {
   useChainId,
@@ -32,7 +33,8 @@ export default function WalletConnectCard() {
 
   const provider = useProvider();
   const ENSNames = useENSNames(provider);
-  const USDCContract = useERC20Contract(USDC[chainId]);
+  const USDCAddress = USDC[chainId as SupportedChainId]?.address;
+  const USDCContract = useERC20Contract(USDCAddress);
   const web3Provider = useWeb3React(provider);
   const { library, account } = useActiveWeb3React();
   const handleSendTransactionWithActiveConnector = () => {
@@ -42,7 +44,7 @@ export default function WalletConnectCard() {
     );
     library.getSigner().sendTransaction({
       from: account,
-      to: USDC[chainId],
+      to: USDCAddress,
       data: approveData
     });
   };
@@ -53,7 +55,7 @@ export default function WalletConnectCard() {
     );
     web3Provider.library.getSigner().sendTransaction({
       from: accounts[0],
-      to: USDC[chainId],
+      to: USDCAddress,
       data: approveData
     });
   };

@@ -1,8 +1,12 @@
 {
     "cSpell.words": [
         "ARBITRUM",
+        "bignumber",
         "clsx",
-        "ethersproject"
+        "ethersproject",
+        "flowtype",
+        "nextjs",
+        "tailwindcss"
     ],
     "[typescript]": {
     "editor.codeActionsOnSave": {
