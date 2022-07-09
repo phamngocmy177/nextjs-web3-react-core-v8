@@ -1,6 +1,7 @@
 import * as React from 'react';
-
 import clsx from 'clsx';
+
+import Header from 'components/Header';
 
 interface Props {
     children: React.ReactNode;
@@ -13,6 +14,7 @@ const Layout = ({ children }: Props): JSX.Element => {
     <div
       className='min-h-screen'
       ref={scrollRef}>
+      <Header />
       <main
         className={clsx(
           'xl:pl-24',

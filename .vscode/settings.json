@@ -5,6 +5,7 @@
         "clsx",
         "ethersproject",
         "flowtype",
+        "headlessui",
         "nextjs",
         "tailwindcss"
     ],
