@@ -9,10 +9,11 @@ import { UNISWAP_ROUTER3_V2 } from "constants/contracts";
 import { USDC } from "constants/tokens";
 import { SupportedChainId } from "constants/chains";
 import useActiveWeb3React from "hooks/useActiveWeb3React";
+import useActiveWeb3Context from "hooks/useActiveWeb3Context";
 
 export default function ActiveConnectorCard() {
   const context = useActiveWeb3React();
-
+  const { activeWallet } = useActiveWeb3Context();
   const { account, chainId, active, accounts, library: provider,ensNames } = context;
   const USDCAddress = USDC[chainId as SupportedChainId]?.address;
   const USDCContract = useERC20Contract(USDCAddress);
@@ -32,7 +33,7 @@ export default function ActiveConnectorCard() {
   return (
     <Card>
       <div>
-        <span className='font-bold'>Active</span>
+        <span className='font-bold'>Active Connector: {activeWallet.name}</span>
         <Status
           isActive={active} />
         <div style={{ marginBottom: "1rem" }} />

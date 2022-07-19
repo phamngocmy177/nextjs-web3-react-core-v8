@@ -1,17 +1,20 @@
-import CoinbaseWalletCard from '../components/connectors/CoinbaseWalletCard'
-import MetaMaskCard from '../components/connectors/MetaMaskCard'
-import NetworkCard from '../components/connectors/NetworkCard'
-import WalletConnectCard from '../components/connectors/WalletConnectCard'
+
 import ActiveConnectorCard from '../components/connectors/ActiveConnectorCard';
+import { SUPPORTED_WALLET } from 'constants/wallets';
+import WalletCard from 'components/connectors/WalletCard';
 
 export default function Home() {
   return (
     <>
       <div style={{ display: 'flex', flexFlow: 'wrap', fontFamily: 'sans-serif' }}>
-        <MetaMaskCard />
-        <WalletConnectCard />
-        <CoinbaseWalletCard />
-        <NetworkCard />
+        {Object.keys(SUPPORTED_WALLET).map(item => (
+          <WalletCard
+            key={item}
+            hooks={SUPPORTED_WALLET[item].hooks}
+            connector={SUPPORTED_WALLET[item].connector}
+            wallet={SUPPORTED_WALLET[item]}
+            walletId={item} />
+        ))}
       </div>
       <ActiveConnectorCard />
     </>

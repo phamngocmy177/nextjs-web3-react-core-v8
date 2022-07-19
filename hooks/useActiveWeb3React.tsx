@@ -4,7 +4,6 @@ import { initializeConnector, Web3ReactHooks } from '@web3-react/core'
 import { EIP1193 } from '@web3-react/eip1193'
 import { EMPTY } from '@web3-react/empty'
 import { Actions, Connector, Provider as Eip1193Provider, Web3ReactStore } from '@web3-react/types'
-import { Url } from '@web3-react/url'
 import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react'
 import JsonRpcConnector from 'connectors/JsonRpcConnector';
 
@@ -34,27 +33,28 @@ function useConnector<T extends { new(actions: Actions, initializer: I): Connect
 ) {
   const [connector, setConnector] = useState<[Connector, Web3ReactHooks, Web3ReactStore]>(EMPTY_CONNECTOR)
   useEffect(() => {
+
     if (initializer) {
-      const [connector, hooks, store] = initializeConnector(actions => new Connector(actions, initializer))
-      connector.activate()
-      setConnector([connector, hooks, store])
+      const [initConnector, hooks, store] = initializeConnector(actions => new Connector(actions, initializer))
+      initConnector.activate()
+      setConnector([initConnector, hooks, store])
     } else {
       setConnector(EMPTY_CONNECTOR)
     }
+
   }, [Connector, initializer, setConnector])
   return connector
 }
 
 interface ActiveWeb3ProviderProps {
     provider?: Eip1193Provider | JsonRpcProvider;
-    jsonRpcEndpoint?: string | JsonRpcProvider;
   }
  
 export function ActiveWeb3Provider({
   provider,
-  jsonRpcEndpoint,
   children
 }: PropsWithChildren<ActiveWeb3ProviderProps>) {
+
   const Injected = useMemo(() => {
     if (provider) {
       if (JsonRpcProvider.isProvider(provider)) return JsonRpcConnector
@@ -65,16 +65,9 @@ export function ActiveWeb3Provider({
     return EIP1193
   }, [provider]) as { new (actions: Actions, initializer: typeof provider): Connector; }
   const injectedConnector = useConnector(Injected, provider)
-  const JsonRpc = useMemo(() => {
-    if (JsonRpcProvider.isProvider(jsonRpcEndpoint)) return JsonRpcConnector
-    return Url
-  }, [jsonRpcEndpoint]) as { new (actions: Actions, initializer: typeof jsonRpcEndpoint): Connector; }
-  const jsonRpcConnector = useConnector(JsonRpc, jsonRpcEndpoint)
-  const [connector, hooks] = injectedConnector[1].useIsActive()
-    ? injectedConnector
-    : jsonRpcConnector ?? EMPTY_CONNECTOR
-  
-  const library = hooks?.useProvider()
+
+  const [connector, hooks] =  injectedConnector ?? EMPTY_CONNECTOR
+  const library = hooks.useProvider()
   
   // TODO(zzmp): walletconnect returns chainId as a number, so web3-react incorrectly parses it as hex.
   const [chainId, setChainId] = useState(hooks.useChainId())
@@ -95,6 +88,7 @@ export function ActiveWeb3Provider({
   const active = hooks.useIsActive()
   const ensNames = hooks.useENSNames()
   const ensName = hooks.useENSName()
+  
   const web3 = useMemo(() => {
     if (connector === EMPTY || !active) {
       return EMPTY_CONTEXT

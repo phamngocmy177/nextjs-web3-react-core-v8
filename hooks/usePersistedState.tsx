@@ -5,7 +5,7 @@ const ACTIVE_CONNECTOR_KEY = 'active-connector';
 const useActiveConnectorState = createPersistedState(ACTIVE_CONNECTOR_KEY);
 
 const useActiveConnector = () => {
-  const [activeConnector, setActiveConnector] = useActiveConnectorState('WALLET_CONNECT');
+  const [activeConnector, setActiveConnector] = useActiveConnectorState('METAMASK');
 
   return {
     activeConnector,
