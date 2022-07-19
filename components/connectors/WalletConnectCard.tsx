@@ -15,19 +15,15 @@ import { SupportedChainId } from "constants/chains";
 const {
   useChainId,
   useAccounts,
-  useError,
-  useIsActivating,
   useIsActive,
   useProvider,
-  useENSNames,
-  useWeb3React
+  useENSNames
+//   useWeb3React
 } = hooks;
 
 export default function WalletConnectCard() {
   const chainId = useChainId();
   const accounts = useAccounts();
-  const error = useError();
-  const isActivating = useIsActivating();
 
   const isActive = useIsActive();
 
@@ -35,7 +31,8 @@ export default function WalletConnectCard() {
   const ENSNames = useENSNames(provider);
   const USDCAddress = USDC[chainId as SupportedChainId]?.address;
   const USDCContract = useERC20Contract(USDCAddress);
-  const web3Provider = useWeb3React(provider);
+
+  //   const web3Provider = useWeb3React(provider);
   const { library, account } = useActiveWeb3React();
   const handleSendTransactionWithActiveConnector = () => {
     const approveData = USDCContract.interface.encodeFunctionData(
@@ -48,17 +45,7 @@ export default function WalletConnectCard() {
       data: approveData
     });
   };
-  const handleSendTransactionWithWalletConnect = () => {
-    const approveData = USDCContract.interface.encodeFunctionData(
-      "approve",
-      [UNISWAP_ROUTER3_V2, MaxUint256]
-    );
-    web3Provider.library.getSigner().sendTransaction({
-      from: accounts[0],
-      to: USDCAddress,
-      data: approveData
-    });
-  };
+
   // attempt to connect eagerly on mount
   useEffect(() => {
     void walletConnect.connectEagerly();
@@ -69,8 +56,6 @@ export default function WalletConnectCard() {
       <div>
         <b>WalletConnect</b>
         <Status
-          isActivating={isActivating}
-          error={error}
           isActive={isActive} />
         <div style={{ marginBottom: "1rem" }} />
         <Chain chainId={chainId} />
@@ -83,13 +68,11 @@ export default function WalletConnectCard() {
       <ConnectWithSelect
         connector={walletConnect}
         chainId={chainId}
-        isActivating={isActivating}
-        error={error}
         isActive={isActive} />
       <button onClick={handleSendTransactionWithActiveConnector}>
 				Send with Active Connector
       </button>
-      <button onClick={handleSendTransactionWithWalletConnect}>
+      <button>
 				Send with WalletConnect
       </button>
     </Card>

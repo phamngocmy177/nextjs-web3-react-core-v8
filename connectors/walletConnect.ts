@@ -3,9 +3,8 @@ import { WalletConnect } from '@web3-react/walletconnect'
 import { URLS } from '../utils/chains'
 
 export const [walletConnect, hooks] = initializeConnector<WalletConnect>(
-  (actions) =>
-    new WalletConnect(actions, {
-      rpc: URLS,
-    }),
-  Object.keys(URLS).map((chainId) => Number(chainId))
+  actions =>
+    new WalletConnect({ actions, options: {
+      rpc: URLS
+    } })
 )

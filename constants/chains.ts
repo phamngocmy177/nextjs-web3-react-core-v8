@@ -1,5 +1,5 @@
 export enum SupportedChainId {
-	// MAINNET = 1,
+	MAINNET = 1,
 	ROPSTEN = 3,
 	// RINKEBY = 4,
 	// GOERLI = 5,
@@ -16,22 +16,22 @@ export enum SupportedChainId {
 }
 
 export const CHAIN_IDS_TO_NAMES = {
-	// [SupportedChainId.MAINNET]: "mainnet",
-	[SupportedChainId.ROPSTEN]: "ropsten",
-	// [SupportedChainId.RINKEBY]: "rinkeby",
-	// [SupportedChainId.GOERLI]: "goerli",
-	// [SupportedChainId.KOVAN]: "kovan",
-	[SupportedChainId.POLYGON]: "polygon",
-	// [SupportedChainId.POLYGON_MUMBAI]: "polygon_mumbai",
-	// [SupportedChainId.ARBITRUM_ONE]: "arbitrum",
-	// [SupportedChainId.ARBITRUM_RINKEBY]: "arbitrum_rinkeby",
-	// [SupportedChainId.OPTIMISM]: "optimism",
-	// [SupportedChainId.OPTIMISTIC_KOVAN]: "optimistic_kovan",
+  // [SupportedChainId.MAINNET]: "mainnet",
+  [SupportedChainId.ROPSTEN]: "ropsten",
+  // [SupportedChainId.RINKEBY]: "rinkeby",
+  // [SupportedChainId.GOERLI]: "goerli",
+  // [SupportedChainId.KOVAN]: "kovan",
+  [SupportedChainId.POLYGON]: "polygon"
+  // [SupportedChainId.POLYGON_MUMBAI]: "polygon_mumbai",
+  // [SupportedChainId.ARBITRUM_ONE]: "arbitrum",
+  // [SupportedChainId.ARBITRUM_RINKEBY]: "arbitrum_rinkeby",
+  // [SupportedChainId.OPTIMISM]: "optimism",
+  // [SupportedChainId.OPTIMISTIC_KOVAN]: "optimistic_kovan",
 };
 
 /**
  * Array of all the supported chain IDs
  */
 export const ALL_SUPPORTED_CHAIN_IDS: SupportedChainId[] = Object.values(
-	SupportedChainId
-).filter((id) => typeof id === "number") as SupportedChainId[];
+  SupportedChainId
+).filter(id => typeof id === "number") as SupportedChainId[];

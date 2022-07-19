@@ -39,14 +39,10 @@ function Select({
 export function ConnectWithSelect({
   connector,
   chainId,
-  isActivating,
-  error,
   isActive
 }: {
   connector: MetaMask | WalletConnect | CoinbaseWallet | Network;
   chainId: ReturnType<Web3ReactHooks['useChainId']>;
-  isActivating: ReturnType<Web3ReactHooks['useIsActivating']>;
-  error: ReturnType<Web3ReactHooks['useError']>;
   isActive: ReturnType<Web3ReactHooks['useIsActive']>;
 }) {
   const isNetwork = connector instanceof Network
@@ -72,26 +68,7 @@ export function ConnectWithSelect({
     [connector, chainId]
   )
 
-  if (error) {
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Select
-          chainId={desiredChainId}
-          switchChain={switchChain}
-          displayDefault={displayDefault}
-          chainIds={chainIds} />
-        <div style={{ marginBottom: '1rem' }} />
-        <button
-          onClick={() =>
-            connector instanceof WalletConnect || connector instanceof Network
-              ? void connector.activate(desiredChainId === -1 ? undefined : desiredChainId)
-              : void connector.activate(desiredChainId === -1 ? undefined : getAddChainParameters(desiredChainId))
-          }>
-          Try Again?
-        </button>
-      </div>
-    )
-  } else if (isActive) {
+  if (isActive) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <Select
@@ -108,20 +85,17 @@ export function ConnectWithSelect({
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <Select
           chainId={desiredChainId}
-          switchChain={isActivating ? undefined : switchChain}
+          switchChain={switchChain}
           displayDefault={displayDefault}
           chainIds={chainIds} />
         <div style={{ marginBottom: '1rem' }} />
         <button
           onClick={
-            isActivating
-              ? undefined
-              : () =>
-                connector instanceof WalletConnect || connector instanceof Network
-                  ? connector.activate(desiredChainId === -1 ? undefined : desiredChainId)
-                  : connector.activate(desiredChainId === -1 ? undefined : getAddChainParameters(desiredChainId))
-          }
-          disabled={isActivating}>
+            () =>
+              connector instanceof WalletConnect || connector instanceof Network
+                ? connector.activate(desiredChainId === -1 ? undefined : desiredChainId)
+                : connector.activate(desiredChainId === -1 ? undefined : getAddChainParameters(desiredChainId))
+          }>
           Connect
         </button>
       </div>
